@@ -12,7 +12,7 @@ function App() {
   return (
     <div className="App">
       <Screen calculator={calculator}/>
-      <ButtonContainer />
+      <ButtonContainer calculator={calculator} setCalculator={setCalculator}/>
     </div>
   );
 }
