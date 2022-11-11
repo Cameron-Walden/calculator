@@ -1,5 +1,4 @@
 export default function Button({ button, calculator, setCalculator }) {
-    
   const selectNumButtons = () => {
     const numToString = button.toString();
     let numberValue;
@@ -14,8 +13,23 @@ export default function Button({ button, calculator, setCalculator }) {
     });
   };
 
+  const resetCalc = () => {
+    setCalculator({
+        sign: '',
+        number: 0,
+        reset: 0
+    });
+  };
+
   const handleAllButtons = () => {
-    return selectNumButtons;
+    const buttonValues = {
+      C: resetCalc,
+    };
+    if(buttonValues[button]) {
+      return buttonValues[button];
+    } else {
+      return selectNumButtons;
+    }
   };
 
   return <button onClick={handleAllButtons()}>{button}</button>;
