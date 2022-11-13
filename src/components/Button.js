@@ -52,12 +52,24 @@ export default function Button({ button, calculator, setCalculator }) {
     });
   };
 
+  const selectDivision = () => {
+    setCalculator({
+      sign: "/",
+      number: 0,
+      result:
+        !calculator.result && calculator.number
+          ? calculator.number
+          : calculator.result,
+    });
+  };
+
   const selectEquals = () => {
     const getTotal = (a, b, sign) => {
       const total = {
         "+": (a, b) => a + b,
-        '-': (a,b) => a - b,
-        'x': (a,b) => a * b,
+        "-": (a, b) => a - b,
+        'x': (a, b) => a * b,
+        '/': (a, b) => a / b,
       };
       console.log(total, "total");
       console.log(total[sign], "total sign");
@@ -77,10 +89,11 @@ export default function Button({ button, calculator, setCalculator }) {
       C: resetCalculator,
       "+": selectAddition,
       "-": selectSubtraction,
+      'x': selectMultiplication,
+      "/": selectDivision,
       "=": selectEquals,
-      'x': selectMultiplication
     };
-    if (buttonValues[button]) {
+    if(buttonValues[button]) {
       return buttonValues[button];
     } else {
       return selectNumButtons;
