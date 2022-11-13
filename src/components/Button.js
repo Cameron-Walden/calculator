@@ -5,27 +5,56 @@ export default function Button({ button, calculator, setCalculator }) {
     numToString === "0" && calculator.number === 0
       ? (numberValue = "0")
       : (numberValue = Number(calculator.number + numToString));
-    console.log(numberValue, "numValue");
-    console.log(numToString, "numToStr");
     setCalculator({
       ...calculator,
       number: numberValue,
     });
   };
 
-  const resetCalc = () => {
+  const resetCalculator = () => {
     setCalculator({
-        sign: '',
-        number: 0,
-        reset: 0
+      sign: "",
+      number: 0,
+      result: 0,
     });
+  };
+
+  const selectAddition = () => {
+    setCalculator({
+      sign: "+",
+      number: 0,
+      result:
+        !calculator.result && calculator.number
+          ? calculator.number
+          : calculator.result,
+    });
+  };
+
+  const selectEquals = () => {
+      const getTotal = (a, b, sign) => {
+        const total = {
+          "+": (a, b) => a + b,
+        };
+        console.log(total, "total");
+        console.log(total[sign], "total sign");
+        console.log(total[sign](a, b), "total sign ab");
+        return total[sign](a, b);
+      };
+      console.log(calculator.result, "calc res");
+      setCalculator({
+        sign: "",
+        number: 0,
+        result: getTotal(calculator.result, calculator.number, calculator.sign),
+      });
   };
 
   const handleAllButtons = () => {
     const buttonValues = {
-      C: resetCalc,
+      C: resetCalculator,
+      '+': selectAddition,
+      "=": selectEquals,
     };
-    if(buttonValues[button]) {
+    if (buttonValues[button]) {
       return buttonValues[button];
     } else {
       return selectNumButtons;
