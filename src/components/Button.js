@@ -84,6 +84,14 @@ export default function Button({ button, calculator, setCalculator }) {
     });
   };
 
+  const selectDecimal = () => {
+    console.log(calculator.number.toString() + '', '<==toString')
+    setCalculator({
+      ...calculator,
+      number: calculator.number + button
+    })
+  }
+
   const handleAllButtons = () => {
     const buttonValues = {
       C: resetCalculator,
@@ -92,6 +100,7 @@ export default function Button({ button, calculator, setCalculator }) {
       'x': selectMultiplication,
       "/": selectDivision,
       "=": selectEquals,
+      '.': selectDecimal
     };
     if(buttonValues[button]) {
       return buttonValues[button];
