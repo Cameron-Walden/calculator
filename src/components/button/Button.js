@@ -95,6 +95,15 @@ export default function Button({ button, calculator, setCalculator }) {
     })
   }
 
+  const invertNum = () => {
+    console.log(calculator.number ? calculator.number * -1 : calculator.number)
+    setCalculator({
+      ...calculator,
+      sign: '',
+      number: calculator.number ? calculator.number * -1 : calculator.number * 1
+    })
+  }
+
   const handleAllButtons = () => {
     const buttonValues = {
       C: resetCalculator,
@@ -103,7 +112,8 @@ export default function Button({ button, calculator, setCalculator }) {
       'x': selectMultiplication,
       "/": selectDivision,
       "=": selectEquals,
-      '.': selectDecimal
+      '.': selectDecimal,
+      '+-': invertNum,
     };
     if(buttonValues[button]) {
       return buttonValues[button];
