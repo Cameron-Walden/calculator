@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import ButtonContainer from './components/ButtonContainer';
-import Screen from './components/Screen';
+import ButtonContainer from './components/buttonContainer/ButtonContainer';
+import Screen from './components/screen/Screen';
+import './App.css'
 
 function App() {
   const [calculator, setCalculator] = useState({
@@ -10,7 +11,7 @@ function App() {
   });
 
   return (
-    <div className="App">
+    <div className="calcWrapper">
       <Screen calculator={calculator}/>
       <ButtonContainer calculator={calculator} setCalculator={setCalculator}/>
     </div>

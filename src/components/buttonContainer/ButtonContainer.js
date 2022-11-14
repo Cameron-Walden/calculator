@@ -1,9 +1,10 @@
-import { buttonValues } from "../buttonValues";
-import Button from "./Button";
+import { buttonValues } from "../../buttonValues";
+import Button from "../button/Button";
+import './ButtonContainer.css';
 
 export default function ButtonContainer({ calculator, setCalculator }) {
   return (
-    <div>
+    <div className="buttonContainer">
       {buttonValues.flat().map((button, idx) => (
         <Button
           button={button}

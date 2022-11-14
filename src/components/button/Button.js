@@ -1,3 +1,5 @@
+import './Button.css'
+
 export default function Button({ button, calculator, setCalculator }) {
   const selectNumButtons = () => {
     const numToString = button.toString();
@@ -88,6 +90,7 @@ export default function Button({ button, calculator, setCalculator }) {
     console.log(calculator.number.toString() + '', '<==toString')
     setCalculator({
       ...calculator,
+      //adds decimal, but can add multiple, so need to write condtional to not allow multiple decimals
       number: calculator.number + button
     })
   }
@@ -109,5 +112,5 @@ export default function Button({ button, calculator, setCalculator }) {
     }
   };
 
-  return <button onClick={handleAllButtons()}>{button}</button>;
+  return <button className="button" onClick={handleAllButtons()}>{button}</button>;
 }

@@ -1,0 +1,7 @@
+.screen{
+    height: 80px;
+    margin-bottom: 64px;
+    background-color: rgb(247, 239, 239);
+    font-weight: bold;
+    font-size: 45px;
+}
