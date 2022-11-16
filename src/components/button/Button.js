@@ -21,6 +21,14 @@ export default function Button({ button, calculator, setCalculator }) {
     });
   };
 
+  const clearEntry = () => {
+    console.log(calculator.number.toString().slice(0, -1), 'slice')
+    setCalculator({
+      ...calculator,
+      number: calculator.number.toString().slice(0, -1)
+    })
+  }
+
   const selectAddition = () => {
     setCalculator({
       sign: "+",
@@ -126,6 +134,7 @@ export default function Button({ button, calculator, setCalculator }) {
       ".": selectDecimal,
       "+-": invertNum,
       "%": selectPercentage,
+      'CE' : clearEntry
     };
     if (buttonValues[button]) {
       return buttonValues[button];
