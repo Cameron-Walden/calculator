@@ -1,4 +1,4 @@
-import './Button.css'
+import "./Button.css";
 
 export default function Button({ button, calculator, setCalculator }) {
   const selectNumButtons = () => {
@@ -70,15 +70,15 @@ export default function Button({ button, calculator, setCalculator }) {
       const total = {
         "+": (a, b) => a + b,
         "-": (a, b) => a - b,
-        'x': (a, b) => a * b,
-        '/': (a, b) => a / b,
+        x: (a, b) => a * b,
+        "/": (a, b) => a / b,
       };
       console.log(total, "total");
       console.log(total[sign], "total sign");
       console.log(total[sign](a, b), "total sign ab");
       return total[sign](a, b);
     };
-    console.log(calculator.result, "calc res");
+    // console.log(calculator.result, "calc res");
     setCalculator({
       sign: "",
       number: 0,
@@ -87,40 +87,56 @@ export default function Button({ button, calculator, setCalculator }) {
   };
 
   const selectDecimal = () => {
-    console.log(calculator.number.toString() + '', '<==toString')
+    // console.log(calculator.number.toString() + "", "<==toString");
     setCalculator({
       ...calculator,
       //adds decimal, but can add multiple, so need to write condtional to not allow multiple decimals
-      number: calculator.number + button
-    })
-  }
+      number: calculator.number + button,
+    });
+  };
 
   const invertNum = () => {
-    console.log(calculator.number ? calculator.number * -1 : calculator.number)
     setCalculator({
       ...calculator,
-      sign: '',
-      number: calculator.number ? calculator.number * -1 : calculator.number * 1
-    })
-  }
+      sign: "",
+      number: calculator.number
+        ? calculator.number * -1
+        : calculator.number * 1,
+    });
+  };
+
+  const selectPercentage = () => {
+    // const getPercentage = (num1, num2) => (num1 * num2) / 100;
+    // console.log(getPercentage(700, 15), "gP");
+
+    setCalculator({
+      ...calculator,
+      number: calculator.number ? calculator.number / 100 : calculator.number,
+    });
+  };
 
   const handleAllButtons = () => {
     const buttonValues = {
       C: resetCalculator,
       "+": selectAddition,
       "-": selectSubtraction,
-      'x': selectMultiplication,
+      x: selectMultiplication,
       "/": selectDivision,
       "=": selectEquals,
-      '.': selectDecimal,
-      '+-': invertNum,
+      ".": selectDecimal,
+      "+-": invertNum,
+      "%": selectPercentage,
     };
-    if(buttonValues[button]) {
+    if (buttonValues[button]) {
       return buttonValues[button];
     } else {
       return selectNumButtons;
     }
   };
 
-  return <button className="button" onClick={handleAllButtons()}>{button}</button>;
+  return (
+    <button className="button" onClick={handleAllButtons()}>
+      {button}
+    </button>
+  );
 }
