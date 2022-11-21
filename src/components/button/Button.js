@@ -1,6 +1,9 @@
+import { useContext } from "react";
+import { CalculatorContext } from "../../context/CalculatorContext";
 import "./Button.css";
 
-export default function Button({ button, calculator, setCalculator }) {
+export default function Button({ button }) {
+  const { calculator, setCalculator } = useContext(CalculatorContext)
   const selectNumButtons = () => {
     const numToString = button.toString();
     let numberValue;
@@ -81,9 +84,6 @@ export default function Button({ button, calculator, setCalculator }) {
         x: (a, b) => a * b,
         "/": (a, b) => a / b,
       };
-      console.log(total, "total");
-      console.log(total[sign], "total sign");
-      console.log(total[sign](a, b), "total sign ab");
       return total[sign](a, b);
     };
     // console.log(calculator.result, "calc res");
